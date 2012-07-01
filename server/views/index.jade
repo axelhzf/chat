@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div this is fucking awesone
+
+  ul
+    each name,i in names
+      if i == 0
+        li awesome, you are the first
+            strong  #{i}) #{name}
+      else
+        li #{i}) #{name}
+
+  p this is huge, but i need a better editor for that
+
+  script(src="/socket.io/socket.io.js")
+  script
+      var socket = io.connect('http://localhost');
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });

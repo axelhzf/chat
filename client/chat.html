@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="assets/less/main.css" type="text/css" media="screen">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="users">
+        <div class="users-inner"></div>
+    </div>
+    <div class="center">
+        <div class="conversation">
+            <div class="conversation-inner"></div>
+        </div>
+        <div class="input">
+            <div class="input-inner">
+                <input id="data" type="text"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="vendor/jquery-1.7.2.js"></script>
+<script src="vendor/underscore.js"></script>
+<script src="vendor/backbone.js"></script>
+<script src="vendor/socket.io.js"></script>
+<script src="vendor/handlebars-1.0.0.beta.6.js"></script>
+
+<script type="text/html" id="usersTmpl">
+    {{#each users}}
+    <div class="user">{{name}}</div>
+    {{/each}}}
+</script>
+
+<script type="text/html" id="msgTmpl">
+    <div class="chat-bubble {{color}}">
+        <div class="chat-bubble-glare">
+            <div class="chat-bubble-glare-inner"></div>
+        </div>
+        <strong>{{username}}</strong> ({{timestamp}}) : {{msg}}
+        <div class="chat-bubble-arrow-border"></div>
+        <div class="chat-bubble-arrow"></div>
+    </div>
+</script>
+
+<script>
+    var Config = Backbone.Model.extend({});
+    var Users = Backbone.Collection.extend({});
+    var Messages = Backbone.Collection.extend({});
+
+    var UsersView = Backbone.View.extend({
+        template : Handlebars.compile($('#usersTmpl').html()),
+        render : function () {
+            var context = {
+                users : this.collection.toJSON()
+            };
+            this.$el.html(this.template(context));
+        }
+    });
+
+    var MessagesView = Backbone.View.extend({
+        initialize : function (options) {
+            this.config = options.config;
+            _.bindAll(this, "appendMsg");
+        },
+
+        render : function () {
+            var self = this;
+            this.collection.each(function(message) {
+                self.appendMsg(message);
+            });
+        },
+
+        msgTemplate : Handlebars.compile($('#msgTmpl').html()),
+
+        appendMsg : function (msg) {
+            var context = msg.toJSON();
+            context.color = context.username === this.config.get('username') ? "me" : "other";
+
+            this.$el.append(this.msgTemplate(context));
+        }
+    });
+
+    var config = new Config();
+    var users = new Users();
+    var messages = new Messages();
+    var usersView = new UsersView({collection : users, el : ".users-inner"});
+    var messagesView = new MessagesView({collection : messages, el : ".conversation-inner", config : config});
+
+    users.on('reset', usersView.render, usersView);
+    messages.on('add', messagesView.appendMsg, messagesView);
+    messages.on('reset', messagesView.render, messagesView);
+
+    /*
+    var resetUsers = [];
+    for (var i = 0; i < 4; i++) {
+        resetUsers.push({name : 'axelhzf' + i});
+    }
+    users.reset(resetUsers);
+
+    for (var i = 0; i < 100; i++) {
+        var user = (i % 4) ? "axelhzf" : "atrivi";
+        messages.add({username : user, timestamp : i, msg : 'hola'});
+    }
+    */
+
+    var socket = io.connect('http://localhost:3000');
+
+    socket.on('connect', function () {
+        var username = prompt("What's your name?");
+        config.set('username', username);
+        socket.emit('adduser', username);
+    });
+
+    socket.on("initchat", function (response) {
+        messages.reset(response);
+    });
+
+    socket.on('updatechat', function (message) {
+        messages.add(message);
+    });
+
+    socket.on('updateusers', function (data) {
+        var names = _.keys(data);
+        var newValues = _.map(names, function (name) {
+            return {name : name};
+        });
+        users.reset(newValues);
+    });
+
+
+
+    // on load of page
+    $(function () {
+        var $input = $('#data');
+
+        $input.focus();
+
+        $input.keypress(function (e) {
+            if (e.which == 13) {
+                var message = $input.val();
+                $input.val('');
+
+                socket.emit('sendchat', message);
+            }
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
