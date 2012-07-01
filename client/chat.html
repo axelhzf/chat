@@ -13,7 +13,7 @@
     </div>
     <div class="center">
         <div class="conversation">
-            <div class="conversation-inner"></div>
+            
         </div>
         <div class="input">
             <div class="input-inner">
@@ -63,6 +63,9 @@
     });
 
     var MessagesView = Backbone.View.extend({
+
+        msgTemplate : Handlebars.compile($('#msgTmpl').html()),
+
         initialize : function (options) {
             this.config = options.config;
             _.bindAll(this, "appendMsg");
@@ -75,13 +78,16 @@
             });
         },
 
-        msgTemplate : Handlebars.compile($('#msgTmpl').html()),
+        scrollBottom : function () {
+            this.$el.scrollTop(this.$el.prop('scrollHeight'));
+        },
 
         appendMsg : function (msg) {
             var context = msg.toJSON();
             context.color = context.username === this.config.get('username') ? "me" : "other";
 
             this.$el.append(this.msgTemplate(context));
+            this.scrollBottom();
         }
     });
 
@@ -89,50 +95,50 @@
     var users = new Users();
     var messages = new Messages();
     var usersView = new UsersView({collection : users, el : ".users-inner"});
-    var messagesView = new MessagesView({collection : messages, el : ".conversation-inner", config : config});
+    var messagesView = new MessagesView({collection : messages, el : ".conversation", config : config});
 
     users.on('reset', usersView.render, usersView);
     messages.on('add', messagesView.appendMsg, messagesView);
     messages.on('reset', messagesView.render, messagesView);
 
-    /*
-    var resetUsers = [];
-    for (var i = 0; i < 4; i++) {
-        resetUsers.push({name : 'axelhzf' + i});
-    }
-    users.reset(resetUsers);
 
-    for (var i = 0; i < 100; i++) {
-        var user = (i % 4) ? "axelhzf" : "atrivi";
-        messages.add({username : user, timestamp : i, msg : 'hola'});
-    }
-    */
+    var mode = "prod";
+    if (mode === "dev") {
+        var resetUsers = [];
+        for (var i = 0; i < 4; i++) {
+            resetUsers.push({name : 'axelhzf' + i});
+        }
+        users.reset(resetUsers);
 
-    var socket = io.connect('http://localhost:3000');
+        for (var i = 0; i < 100; i++) {
+            var user = (i % 4) ? "axelhzf" : "atrivi";
+            messages.add({username : user, timestamp : i, msg : 'hola'});
+        }    
+    }else{
+        var socket = io.connect('http://localhost:3000');
 
-    socket.on('connect', function () {
-        var username = prompt("What's your name?");
-        config.set('username', username);
-        socket.emit('adduser', username);
-    });
-
-    socket.on("initchat", function (response) {
-        messages.reset(response);
-    });
-
-    socket.on('updatechat', function (message) {
-        messages.add(message);
-    });
-
-    socket.on('updateusers', function (data) {
-        var names = _.keys(data);
-        var newValues = _.map(names, function (name) {
-            return {name : name};
+        socket.on('connect', function () {
+            var username = prompt("What's your name?");
+            config.set('username', username);
+            socket.emit('adduser', username);
         });
-        users.reset(newValues);
-    });
 
+        socket.on("initchat", function (response) {
+            messages.reset(response);
+        });
 
+        socket.on('updatechat', function (message) {
+            messages.add(message);
+        });
+
+        socket.on('updateusers', function (data) {
+            var names = _.keys(data);
+            var newValues = _.map(names, function (name) {
+                return {name : name};
+            });
+            users.reset(newValues);
+        });        
+    }
 
     // on load of page
     $(function () {
