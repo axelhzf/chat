@@ -47,60 +47,28 @@
     </div>
 </script>
 
+<script src="src/MessagesView.js"></script>
+<script src="src/UsersView.js"></script>
+
 <script>
-    var Config = Backbone.Model.extend({});
-    var Users = Backbone.Collection.extend({});
-    var Messages = Backbone.Collection.extend({});
+    var App = App || {};
 
-    var UsersView = Backbone.View.extend({
-        template : Handlebars.compile($('#usersTmpl').html()),
-        render : function () {
-            var context = {
-                users : this.collection.toJSON()
-            };
-            this.$el.html(this.template(context));
-        }
-    });
+    //Model
+    App.Config = Backbone.Model.extend({});
+    App.Users = Backbone.Collection.extend({});
+    App.Messages = Backbone.Collection.extend({});
 
-    var MessagesView = Backbone.View.extend({
+    //Initialize
+    App.config = new App.Config();
+    App.users = new App.Users();
+    App.messages = new App.Messages();
+    App.usersView = new App.UsersView({collection : App.users, el : ".users-inner"});
+    App.messagesView = new App.MessagesView({collection : App.messages, el : ".conversation", config : App.config});
 
-        msgTemplate : Handlebars.compile($('#msgTmpl').html()),
-
-        initialize : function (options) {
-            this.config = options.config;
-            _.bindAll(this, "appendMsg");
-        },
-
-        render : function () {
-            var self = this;
-            this.collection.each(function(message) {
-                self.appendMsg(message);
-            });
-        },
-
-        scrollBottom : function () {
-            this.$el.scrollTop(this.$el.prop('scrollHeight'));
-        },
-
-        appendMsg : function (msg) {
-            var context = msg.toJSON();
-            context.color = context.username === this.config.get('username') ? "me" : "other";
-
-            this.$el.append(this.msgTemplate(context));
-            this.scrollBottom();
-        }
-    });
-
-    var config = new Config();
-    var users = new Users();
-    var messages = new Messages();
-    var usersView = new UsersView({collection : users, el : ".users-inner"});
-    var messagesView = new MessagesView({collection : messages, el : ".conversation", config : config});
-
-    users.on('reset', usersView.render, usersView);
-    messages.on('add', messagesView.appendMsg, messagesView);
-    messages.on('reset', messagesView.render, messagesView);
-
+    // Attach events
+    App.users.on('reset', App.usersView.render);
+    App.messages.on('add', App.messagesView.appendMsg);
+    App.messages.on('reset', App.messagesView.render);
 
     var mode = "prod";
     if (mode === "dev") {
@@ -119,16 +87,16 @@
 
         socket.on('connect', function () {
             var username = prompt("What's your name?");
-            config.set('username', username);
+            App.config.set('username', username);
             socket.emit('adduser', username);
         });
 
         socket.on("initchat", function (response) {
-            messages.reset(response);
+            App.messages.reset(response);
         });
 
         socket.on('updatechat', function (message) {
-            messages.add(message);
+            App.messages.add(message);
         });
 
         socket.on('updateusers', function (data) {
@@ -136,7 +104,7 @@
             var newValues = _.map(names, function (name) {
                 return {name : name};
             });
-            users.reset(newValues);
+            App.users.reset(newValues);
         });        
     }
 
