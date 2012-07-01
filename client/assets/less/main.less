@@ -122,6 +122,8 @@ input[type=text] {
 
 .chat-bubble.me {
     float: right;
+    text-align: right;
+    
     .bubble(@bubble-border, @bubble-bg-1, @bubble-bg-2, @bubble-bg-3);
 
     .chat-bubble-arrow {
@@ -164,6 +166,10 @@ input[type=text] {
     border-radius: 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
     text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.chat-bubble p {
+    margin: 0;
 }
 
 .chat-bubble-glare {

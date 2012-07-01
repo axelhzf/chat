@@ -30,7 +30,7 @@ function createMsg (msg, username) {
     return {
         username : username || "SERVER",
         msg : msg,
-        timestamp : new Date()
+        timestamp : new Date().getTime()
     };
 }
 

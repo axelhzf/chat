@@ -29,6 +29,8 @@
 <script src="vendor/backbone.js"></script>
 <script src="vendor/socket.io.js"></script>
 <script src="vendor/handlebars-1.0.0.beta.6.js"></script>
+<script src="vendor/moment.js"></script>
+
 
 <script type="text/html" id="usersTmpl">
     {{#each users}}
@@ -41,7 +43,8 @@
         <div class="chat-bubble-glare">
             <div class="chat-bubble-glare-inner"></div>
         </div>
-        <strong>{{username}}</strong> ({{timestamp}}) : {{msg}}
+        <p><strong>{{username}}</strong> <small>({{ fromNow timestamp }})</small><p>
+        <p>{{msg}}</p>
         <div class="chat-bubble-arrow-border"></div>
         <div class="chat-bubble-arrow"></div>
     </div>
@@ -49,6 +52,17 @@
 
 <script src="src/MessagesView.js"></script>
 <script src="src/UsersView.js"></script>
+<script src="src/InputView.js"></script>
+<script src="src/Message.js"></script>
+
+
+<script>
+
+Handlebars.registerHelper("fromNow", function(date) {
+  return moment(date).fromNow();
+});
+
+</script>
 
 <script>
     var App = App || {};
@@ -56,14 +70,19 @@
     //Model
     App.Config = Backbone.Model.extend({});
     App.Users = Backbone.Collection.extend({});
-    App.Messages = Backbone.Collection.extend({});
+    App.Messages = Backbone.Collection.extend({
+        model : App.Message
+    });
 
     //Initialize
     App.config = new App.Config();
     App.users = new App.Users();
-    App.messages = new App.Messages();
+    App.messages = new App.Messages({});
     App.usersView = new App.UsersView({collection : App.users, el : ".users-inner"});
     App.messagesView = new App.MessagesView({collection : App.messages, el : ".conversation", config : App.config});
+
+    App.inputView = new App.InputView({el : ".input"});
+    App.inputView.focus();
 
     // Attach events
     App.users.on('reset', App.usersView.render);
@@ -108,21 +127,10 @@
         });        
     }
 
-    // on load of page
-    $(function () {
-        var $input = $('#data');
-
-        $input.focus();
-
-        $input.keypress(function (e) {
-            if (e.which == 13) {
-                var message = $input.val();
-                $input.val('');
-
-                socket.emit('sendchat', message);
-            }
-        });
+    App.inputView.on("newMessage", function (message) {
+        socket.emit('sendchat', message.get('msg'));
     });
+
 
 </script>
 

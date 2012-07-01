@@ -21,6 +21,7 @@ App.MessagesView = Backbone.View.extend({
 
     appendMsg : function (msg) {
         var context = msg.toJSON();
+        
         context.color = context.username === this.config.get('username') ? "me" : "other";
 
         this.$el.append(this.msgTemplate(context));
