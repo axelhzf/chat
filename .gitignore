@@ -16,3 +16,4 @@ server/npm-debug.log
 
 .DS_STORE
 *.iml
+.idea
