@@ -19,9 +19,23 @@ App.MessagesView = Backbone.View.extend({
         this.$el.scrollTop(this.$el.prop('scrollHeight'));
     },
 
+    getHtmlMsg : function (msg) {
+        var smiles = [":)", ":'(", ":P"],
+            codes  = ["360", "358", "348"];
+
+        var result = msg;
+        for(var i = 0; i < smiles.length; i++){
+            var smile = smiles[i];
+            var code = codes[i];
+            result = result.replace(smile, '<i class="icon-' + code + '"></i>');
+        }
+
+        return result;
+    },
+
     appendMsg : function (msg) {
         var context = msg.toJSON();
-        
+        context.htmlMsg = this.getHtmlMsg(context.msg);
         context.color = context.username === this.config.get('username') ? "me" : "other";
 
         this.$el.append(this.msgTemplate(context));
