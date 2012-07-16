@@ -52,7 +52,6 @@ function findMessages(callback) {
 	var messages = [];
 	query.on('row', function(row) {
 		messages.push(row);
-		console.log(JSON.stringify(row));
 	});
 	query.on('end', function () {
 	    callback(messages);
