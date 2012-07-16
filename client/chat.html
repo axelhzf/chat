@@ -91,7 +91,7 @@
     App.messages.on('add', App.messagesView.appendMsg);
     App.messages.on('reset', App.messagesView.render);
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('http://chat-tlp2k12.herokuapp.com/');
 
     socket.on('connect', function () {
         var username = prompt("What's your name?");
