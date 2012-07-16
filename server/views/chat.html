@@ -59,7 +59,6 @@
 <script src="src/InputView.js"></script>
 <script src="src/Message.js"></script>
 
-
 <script>
     Handlebars.registerHelper("fromNow", function (date) {
         return moment(date).fromNow();
@@ -91,7 +90,7 @@
     App.messages.on('add', App.messagesView.appendMsg);
     App.messages.on('reset', App.messagesView.render);
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('/');
 
     socket.on('connect', function () {
         var username = prompt("What's your name?");

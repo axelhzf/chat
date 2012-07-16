@@ -1,7 +1,8 @@
 var express = require('express')
     , routes = require('./routes')
     , http = require('http')
-    , _ = require("underscore");
+    , _ = require("underscore")
+    , pg = require('pg');
 
 var app = express();
 var server = http.createServer(app);
@@ -26,6 +27,10 @@ app.get('/', routes.index);
 
 var usernames = {};
 
+var connectionString = process.env.DATABASE_URL || 'tcp://postgres:axel@localhost/postgres';
+var client = new pg.Client(connectionString);
+client.connect();
+
 function createMsg (msg, username) {
     return {
         username : username || "SERVER",
@@ -34,30 +39,33 @@ function createMsg (msg, username) {
     };
 }
 
-var redis = require('redis').createClient();
-
 function saveMessage(msg) {
-    redis.incr("global:msg:id", function (err, id) {
-        redis.hmset("msg:" + id, msg);
-        redis.rpush("messages", id);
-    });
+	client.query({
+	  name: 'insert message',
+	  text: "INSERT INTO messages(msg, username, timestamp) values($1, $2, $3)",
+	  values: [msg.msg, msg.username, msg.timestamp]
+	});
 }
 
 function findMessages(callback) {
-    var max = -1;
-    redis.lrange("messages", 0, max, function (err, ids) {
-        var multi = redis.multi();
-        _.each(ids, function (id){
-            multi.hgetall("msg:" + id);
-        });
-        multi.exec(function (err, replies){
-            callback(replies);
-        });
-    });
+	var query = client.query('SELECT * FROM messages');
+	var messages = [];
+	query.on('row', function(row) {
+		messages.push(row);
+		console.log(JSON.stringify(row));
+	});
+	query.on('end', function () {
+	    callback(messages);
+	})
 }
 
-
 var io = require('socket.io').listen(server);
+
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
+
 io.sockets.on('connection', function (socket) {
 
     socket.on('sendchat', function (data) {
