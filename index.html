@@ -1,1 +1,953 @@
-My Github page
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Backbone.js TLP2k12</title>
+
+    <meta name="description"
+          content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="css/backbone.css">
+
+    <link rel="stylesheet" href="lib/solarized_light.css">
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Used to fade in a background when a specific slide state is reached -->
+<div class="state-background"></div>
+
+
+<div class="slides">
+
+<section>
+    <h1>Backbone.js</h1>
+    <h3 class="inverted">Clientside MVC Framework </h3>
+</section>
+
+<section>
+    <h2>¿Quién soy?</h2>
+    <div class="whoami centered">
+        <h1><a href="http://www.axelhzf.com" target="_blank">axelhzf.com</a></h1>
+        <h2><a href="http://www.twitter.com/axelhzf" target="_blank"><img class="twitter" src="images/twitter-bird-dark-bgs.png" alt="twitter">@axelhzf</a></h2>
+    </div>
+</section>
+
+<section>
+    <h2>¿Dónde trabajo?</h2>
+    <div class="centered">
+        <div>
+            <a href="http://www.arte-consultores.com" target="_blank"><img src="images/logo_arte_consultores.png" alt="arte-consultores"></a>
+        </div>
+        <div>
+            <a href="http://www.stat4you.com/" target="_blank"><img src="images/stat4you.png" alt="stat4you"></a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>¿A qué me dedicaba?</h2>
+    <div class="whatidid centered">
+        <div class="bubble bubble-big">Java</div>
+        <div class="bubble bubble-min">Javascript</div>
+    </div>
+</section>
+
+<section>
+    <h2>¿A qué me dedico?</h2>
+    <div class="whatido centered">
+        <div class="bubble bubble-min">Java</div>
+        <div class="bubble bubble-big">Javascript</div>
+    </div>
+</section>
+
+<section>
+    <h1>Backbone.js</h1>
+</section>
+
+<section>
+    <h2>The magic of backbone</h2>
+
+    <p>The magic of backbone, IMO is in its lack of magic. Slim, readable, non-magical source, easily extended for
+        custom needs. <a href="https://twitter.com/search/%2523backboneconf">#backboneconf</a></p>
+    <p>
+        <i>
+            <small><a href="http://hakim.se">Hakim El Hattab</a> <a href="http://twitter.com/hakimel">@hakimel</a>
+            </small>
+        </i>
+    </p>
+</section>
+
+<section>
+    <h2>Creador</h2>
+
+    <h3>Jeremy Ashkenas</h3>
+    <img src="images/jeremy.png" alt="Jeremy Ashkenas">
+</section>
+<section>
+    <h2>Jeremy Ashkenas</h2>
+
+    <p>Trabaja en el desarrollo de noticias interactivas para el NYTimes y en
+        <a href="http://www.documentcloud.org/">DocumentCloud</a>. Es el creador de:</p>
+    <div>
+        <div class="bubble"><a href="http://underscorejs.org/">Underscore.js</a></div>
+        <div class="bubble"><a href="http://backbonejs.org/">Backbone.js</a></div>
+        <div class="bubble"><a href="http://coffeescript.org/">Coffeescript</a></div>
+    </div>
+</section>
+
+<section>
+    <h2>¿Quién utiliza Backbone.js?</h2>
+    
+    <div>
+        <img src="images/examples.png" alt="Examples">
+    </div>
+
+    <p>
+        <small><a href="http://backbonejs.org/#examples">ver lista completa</a></small>
+    </p>
+</section>
+
+<section>
+    <h2>¿Qué es Backbone.js?</h2>
+
+    <p>
+        Backbone.js permite estructurar una aplicación web. Separación de conceptos:
+    </p>
+    <ul>
+        <li>Models</li>
+        <li>Collections</li>
+        <li>View</li>
+        <li>Router</li>
+    </ul>
+</section>
+
+<section>
+    <h1>Tamaño</h1>
+    <h2><6kb</h2>
+</section>
+
+<section>
+    <h2>Dependencias</h2>
+    <div>
+        <ul>
+            <li><strong>Underscore.js</strong></li>
+            <li>jQuery/Zepto.js</li>
+            <li>json2.js</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <section>
+        <h2>MVC</h2>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>MVC</th>
+                    <th>Backbone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Model</td>
+                    <td>Model / Collection</td>
+                </tr>
+                <tr>
+                    <td>Controller</td>
+                    <td>View / Router</td>
+                </tr>
+                <tr>
+                    <td>View</td>
+                    <td>Template</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>¿Por qué utilizar Backbone.js?</h2>
+
+    <h3>"Yo con jQuery tengo suficiente"</h3>
+
+    <p>Backbone.js no es un sustituto de jQuery, todo lo contrario, depende de jQuery para manipular el
+        DOM.</p>
+
+
+</section>
+
+<section>
+    <h2>¿Por qué utilizar Backbone.js?</h2>
+
+    <p>
+        <img src="images/spaghetti.jpeg" alt="Spaghetti code">
+    </p>
+    <p>Backbone.js añade una capa de abstracción superior, permitiendo estructurar la aplicación.</p>
+    <p>Desvincular los datos del DOM permite hacer la aplicación más mantenible y testeable.</p>
+</section>
+
+<section>
+    <h2>Persistencia</h2>
+    <ul>
+        <li>RESTFul</li>
+        <li>LocalStorage (vía <a href="https://github.com/jeromegn/Backbone.localStorage">plugin</a>)</li>
+        <li>WebSockets (vía <a href="https://github.com/scttnlsn/backbone.io">plugin</a>)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>¿Quieres aprender Javascript?</h2>
+    <h2>Annotated Source</h2>
+
+    <a href="http://backbonejs.org/docs/backbone.html">
+    <img src="images/annotatedSources.png" alt="Annotated Source"></a>
+
+</section>
+
+<section>
+    <h1>API</h1>
+</section>
+
+<section>
+    <h2>Model</h2>
+
+    <p>Models are the heart of any JavaScript application, containing the interactive data as well as a large part
+        of the logic surrounding it: conversions, validations, computed properties, and access control.</p>
+
+    <p>Basic set of functionality for managing changes: <strong>Events</strong></p>
+</section>
+
+
+
+<section>
+    <h2>Model / initialize</h2>
+
+    <pre><code>// constructor por defecto
+var Book = Backbone.Model.extend({});
+
+var book = new Book({
+    title: "One Thousand and One Nights",
+    author: "Scheherazade"
+});</code></pre>
+
+    <pre><code>
+// extender el constructor
+var Book = Backbone.Model.extend({
+    initialize : function (attributes) {
+        ...
+    }
+});
+    </code></pre>
+
+</section>
+
+<section>
+    <h2>Model / accessors</h2>
+
+    <pre><code>var book = new Book({
+    title: "One Thousand and One Nights",
+    author: "Scheherazade"
+});
+
+book.get('title'); //"One Thousand and One Nights"
+
+book.set({title: "March 20", content: "In his eyes she eclipses..."});
+book.set("title", "A Scandal in Bohemia");</code></pre>
+
+    <img src="images/bookObject.png" alt="book object internals">
+</section>
+
+<section>
+    <h2>Model / events</h2>
+
+    <pre><code>book.set('title', '...'); // Se lanza evento "change:title" y "change"
+
+book.set({title : '', content : ''}); // Se lanza un evento change
+// por cada atributo y un único "change"
+
+book.set({title : ''}, {silent : true}); // No lanza eventos</code></pre>
+</section>
+
+<section>
+    <h2>Model / defaults</h2>
+
+    <pre><code>var Meal = Backbone.Model.extend({
+    defaults: {
+        "appetizer": "caesar salad",
+        "entree": "ravioli",
+        "dessert": "cheesecake"
+    }
+});
+var meal = new Meal({dessert : 'ice cream'});
+
+meal.get('dessert'); // ice cream
+meal.get('entree'); // ravioli</code></pre>
+
+</section>
+
+<section>
+    <h2>Model / toJSON</h2>
+
+    <p>Devuelve una copia de los atributos</p>
+
+    <pre><code>
+var artist = new Backbone.Model({
+    firstName: "Wassily",
+    lastName: "Kandinsky"
+});
+artist.set({birthday: "December 16, 1866"});
+
+artist.toJSON(); // { firstName: "Wassily", lastName: "Kandinsky", birthday: "December 16, 1866" }</code></pre>
+
+</section>
+
+<section>
+    <h2>Model / validate </h2>
+<pre><code>var Chapter = Backbone.Model.extend({
+    validate: function(attrs) {
+        if (attrs.end < attrs.start) {
+            return "can't end before it starts";
+        }
+    }
+});</code></pre>
+</section>
+
+<section>
+    <h2>Model / Sync </h2>
+
+    <p>
+        Intermanente los métodos, "save", "fetch" y "destroy" llaman al método <strong><a
+            href="http://backbonejs.org/#Sync">Backbone.sync</a></strong> pasándole
+        los parámetros adecuados.
+    <p>
+
+    <p>La implementación por defecto es Rest.</p>
+
+    <p>Backbone.sync se puede sobreescribir:
+        <a href="https://github.com/jeromegn/Backbone.localStorage">LocalStorage</a>,
+        <a href="https://github.com/scttnlsn/backbone.io">Socket.io</a></p>
+    </p>
+</section>
+
+<section>
+    <h2>Model / Sync / Ajax</h2>
+
+    <pre><code>var Book = Backbone.Model.extend({
+    urlRoot : '/books'
+});
+
+var book = new Book({
+    title: "The Rough Riders",
+    author: "Theodore Roosevelt"
+});
+
+book.save(); // HTTP POST /books
+book.set('title', '...');
+book.save({author: "Teddy"}); //HTTP PUT /books/3
+book.fetch(); // HTTP GET /books/3
+book.destroy(); //HTTP DELETE /books/3</code></pre>
+
+</section>
+
+<section>
+    <h1>Collection</h1>
+</section>
+
+<section>
+    <h2>Colletion / initialize</h2>
+
+<pre><code>var Library = Backbone.Collection.extend({
+    model: Book
+});
+var library = new Library([book1, book2, book3]);</code></pre>
+
+</section>
+
+<section>
+    <h2>Collection / modificar</h2>
+
+<pre><code>var ship1 = Backbone.Model({name: "Flying Dutchman"});
+var ship2 = Backbone.Model({name: "Black Pearl"});
+
+var ships = new Backbone.Collection;
+
+//trigger "add", "remove" events
+ships.add([ship1, ship2]);
+ships.remove(ship1);
+ships.get(ship2.id);
+ships.push(ship1);
+ships.pop(ship1);
+ships.unshift(ship1);
+ships.shift(ship1);
+</code></pre>
+</section>
+
+<section>
+    <h2>Collection / modificar / Underscore</h2>
+    <ul class="two-columns">
+        <li><a href="http://documentcloud.github.com/underscore/#each">forEach (each)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#map">map</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#reduce">reduce (foldl, inject)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#reduceRight">reduceRight (foldr)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#find">find (detect)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#filter">filter (select)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#reject">reject</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#all">every (all)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#any">some (any)</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#include">include</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#invoke">invoke</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#max">max</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#min">min</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#sortBy">sortBy</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#groupBy">groupBy</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#sortedIndex">sortedIndex</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#shuffle">shuffle</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#toArray">toArray</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#size">size</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#first">first</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#initial">initial</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#rest">rest</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#last">last</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#without">without</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#indexOf">indexOf</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#lastIndexOf">lastIndexOf</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#isEmpty">isEmpty</a></li>
+        <li><a href="http://documentcloud.github.com/underscore/#chain">chain</a></li>
+    </ul>
+</section>
+
+<section>
+    <h2>Collection / Sync / Ajax</h2>
+
+    <pre><code>var Notes = Backbone.Collection.extend({
+    url: '/notes'
+});
+
+var notes = new Notes();
+notes.fetch(); // HTTP GET /notes
+notes.fetch({data: {page: 3}})  //HTTP GET /notes?page=3</code></pre>
+</section>
+
+
+<section>
+    <h1>Router</h1>
+    <h2>Manipulando URLs con #hashFragments y History API</h2>
+</section>
+
+<section>
+    <h2>Router / Soporte de navegadores</h2>
+    <p>For browsers which don't yet support the History API, the Router handles graceful fallback and
+        transparent translation to the fragment version of the URL.</p>
+</section>
+
+<section>
+    <h2>Router / routes</h2>
+<pre><code>var Router = Backbone.Router.extend({
+    routes: {
+        "help":                 "help",    // #help
+        "search/:query":        "search",  // #search/kiwis
+        "search/:query/p:page": "search"   // #search/kiwis/p7
+    },
+
+    help: function() {...},
+    search: function(query, page) {...}
+
+});
+var router = new Router();
+Backbone.history.start();
+Backbone.history.start({pushState : true});
+
+router.navigate("help", {trigger: true});
+</code></pre>
+</section>
+
+
+<section>
+    <h1>View</h1>
+</section>
+
+<section>
+    <h2>View / Básica</h2>
+<pre><code>var DocumentView = Backbone.View.extend({
+    render: function() {
+        var html = this.template(model.toJSON());
+        this.$el.html(html);
+    }
+});
+
+var document = new Backbone.Model({title : 'title'});
+var documentView = new DocumentView({el : '#document', model : document});
+documentView.render();
+
+</code></pre>
+</section>
+
+<section>
+    <h2>View / Tempaltes / Underscore</h2>
+    <pre><code>
+    var DocumentView = Backbone.View.extend({
+        template : _.template("&lt;strong&gt;Title&lt;strong&gt; : <%= title %>");
+        render : function () {
+            var html = this.template(model.toJSON());
+            this.$el.html(html);
+        }
+    });
+    </code></pre>
+</section>
+
+<section>
+    <h2>View / Tempaltes / Underscore</h2>
+
+    <p>El principal inconveniente de las plantillas
+       de undescore es el código inline para hacer cosas sencilla.</p>
+    <p>Ej: Bucle</p>
+
+    <pre><code>
+var list = "<% _.each(people, function(name) { %> &lt;li&gt;<%= name %>&lt;li&gt; <% }); %>";
+_.template(list, {people : ['moe', 'curly', 'larry']});
+    </code></pre>
+</section>
+
+<section>
+    <h2>¿Solución?</h2>
+    <a href="http://handlebarsjs.com"><img class="logo" src="images/handlebars_logo.png" alt="Handlebars.js"></a>
+</section>
+
+<section>
+    <h2>View / Templates / Handlebars</h2>
+
+    <pre><code>
+var template = Handlebars.compile(
+   "{{#each people}}&lt;li&gt;{{ this }}&lt;li&gt;{{/each}}"
+);
+template({people : ['moe', 'curly', 'larry']});
+    </code></pre>
+</section>
+
+<section>
+    <h2>View / Templates / Handlebars</h2>
+    <pre><code>
+var DocumentView = Backbone.View.extend({
+    template : Handlebars.compile(
+        "&lt;strong&gt;Title&lt;strong&gt; : {{title}}");
+
+    render : function () {
+        var html = this.template(model.toJSON());
+        this.$el.html(html);
+    }
+});
+    </code></pre>
+</section>
+
+<section>
+    <h2>View / Multiline templates</h2>
+
+     <pre><code>&lt;script type=&quot;text/html&quot; id=&quot;#documentView&quot;&gt;
+    &lt;ul&gt;
+    {{#each people}}
+        &lt;li&gt;{{ name }}&lt;/li&gt;
+    {{/each}}
+    &lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+var DocumentView = Backbone.View.extend({
+    template : Handlebars.compile($('#documentView').html()),
+    render : function() {
+        this.$el.html(this.template(this.collection.toJSON()));
+    }
+});
+&lt;/script&gt;</code></pre>
+</section>
+
+<section>
+    <h2>View / Events</h2>
+    <pre><code>
+var DocumentRow = Backbone.View.extend({
+
+    events: {
+        "click .icon":          "open",
+        "click .button.edit":   "openEditDialog",
+        "click .button.delete": "destroy"
+    },
+
+    render: function() {...},
+    open: function() {...},
+    openEditDialog : function() {...},
+
+});
+    </code></pre>
+</section>
+
+<section>
+    <h1>Conectar eventos</h1>
+
+    <p>La magia de backbone viene cuando empezamos a conectar eventos.
+    </p>
+
+    <pre><code>
+        model.on("change", view.render);
+        view.on("addUser", function (user) {
+            this.collection.add(user)
+        });
+    </code></pre>
+</section>
+
+<section>
+    <h1>Testing</h1>
+    <p><a href="http://tinnedfruit.com/2011/03/03/testing-backbone-apps-with-jasmine-sinon.html">Testing Backbone applications with Jasmine and Sinon</a></p>
+    <pre><code>describe(&quot;TodoView&quot;, function() {
+    beforeEach(function() {
+        this.model = new Backbone.Model({title: &quot;My Todo&quot;,
+                                         id: 1});
+        this.view = new TodoView({model:this.model});
+    });
+    it(&quot;produces the correct HTML&quot;, function() {
+        this.view.render();
+        expect(this.view.el.innerHTML)
+            .toEqual('&lt;a href=&quot;#todo/1&quot;&gt;&lt;h2&gt;My Todo&lt;/h2&gt;&lt;/a&gt;');
+    });
+});</code></pre>
+</section>
+
+<section>
+    <h1>Chat Example</h1>
+    <img src="images/chat.png" alt="chat!" class="logo">
+</section>
+
+<section>
+    <h2>Descargar base</h2>
+</section>
+
+<section>
+    <h2>Identificar elementos</h2>
+    <img src="images/chatViews.png" alt="chat views" class="logo">
+</section>
+
+<section>
+    <h2>Diagrama de eventos</h2>
+    <img src="images/eventsDiagram.png" alt="chat views" class="logo">
+</section>
+
+<section>
+    <h2>UsersView</h2>
+    <p>Está vista renderiza la plantilla con la lista de usuarios conectados</p>
+    <pre><code>App.UsersView = Backbone.View.extend({
+
+    template : Handlebars.compile($('#usersTmpl').html()),
+
+    render : function () {
+        var context = {
+            users : this.collection.toJSON()
+        };
+        this.$el.html(this.template(context));
+    }
+});</code></pre>
+</section>
+
+<section>
+    <h2>UsersView</h2>
+    <p>Prueba que la plantilla se renderiza correctamente añadiendo usuarios</p>
+
+    <pre><code>App.users.reset([{name : 'user1'}, {name : 'user2'}]);
+App.usersView.render();</code></pre>
+</section>
+
+<section>
+    <h2>UsersView</h2>
+    <p>Conecta los eventos para que al modificar la lista de usuario, se renderice la vista automáticamente.</p>
+
+    <pre><code>
+App.users.on('add reset', function () {
+    App.usersView.render();
+});
+App.users.reset([{name : 'user1'}, {name : 'user2'}]);
+    </code></pre>
+
+    <p>
+        <small>Deberíamos también conectar los eventos de eliminar, pero en nuestro caso el servidor va a devolver
+            siempre
+            la lista completa de usuario, así que el único evento que se va a lanzar es el reset.
+        </small></p>
+</section>
+
+<section>
+    <h2>MessagesView</h2>
+    <pre><code>App.MessagesView = Backbone.View.extend({
+    msgTemplate : Handlebars.compile($('#msgTmpl').html()),
+    render : function () {
+        var view = this;
+        this.collection.each(function(message) {
+            view.appendMsg(message);
+        });
+    },
+    appendMsg : function (msg) {
+        var context = msg.toJSON();
+        this.$el.append(this.msgTemplate(context));
+    }
+});</code></pre>
+    <p><small>En este caso en vez de renderizar la lista completa, renderizmos cada uno de los elementos porque el servidor
+        nos va a devolver los menajes nuevos individualmente.</small></p>
+</section>
+
+<section>
+    <h2>MessagesView</h2>
+    <p>Prueba la vista añadiendo algunos mensajes.</p>
+    <pre><code>App.messages.reset([
+    {username : 'username', timestamp: '01-01-2012', msg : 'hola'},
+    {username : 'username2', timestamp: '01-01-2012', msg : 'mundo'}
+]);
+App.messagesView.render();</code></pre>
+</section>
+
+<section>
+    <h2>MessagesView</h2>
+    <p>Conecta los eventos</p>
+    <pre><code>App.messages.on('add', function (message) {
+    App.messagesView.appendMsg(message);
+});
+App.messages.on('reset', function () {
+    App.messagesView.render();
+});
+var msg1 = new App.Message(
+  {username : 'username', timestamp: '01-01-2012', msg : 'hola'});
+var msg2 = new App.Message(
+  {username : 'username2', timestamp: '01-01-2012', msg : 'mundo'});
+App.messages.reset([msg1]);
+App.messages.add(msg2);</code></pre>
+
+<p><small>En este caso tenemos dos eventos distintos porque se llamará a "reset" cuando se conecte al servidor y a "add"
+cuando llegue un mensaje nuevo.</small></p>
+</section>
+
+<section>
+    <h2>MessagesView / scrollBottom</h2>
+    <p>Cuando un mensaje nuevo llegue deberíamos verlo en pantalla.</p>
+
+    <pre><code>scrollBottom : function () {
+    this.$el.scrollTop(this.$el.prop('scrollHeight'));
+},
+
+appendMsg : function (msg) {
+    var context = msg.toJSON();
+    this.$el.append(this.msgTemplate(context));
+    <strong>this.scrollBottom();</strong>
+}</code></pre>
+</section>
+
+<section>
+    <h2>MessagesView / bubble color</h2>
+    <pre><code>initialize : function (options) {
+    this.config = options.config;
+},
+appendMsg : function (msg) {
+    var context = msg.toJSON();
+    <strong>context.color = context.username === this.config.get('username') ? "me" : "other";</strong>
+    this.$el.append(this.msgTemplate(context));
+    this.scrollBottom();
+}</code></pre>
+
+    <pre><code>&lt;script type=&quot;text/html&quot; id=&quot;msgTmpl&quot;&gt;
+        &lt;div class=&quot;chat-bubble {{color}}&quot;&gt;</code></pre>
+</section>
+
+<section>
+    <h2>MessagesView / smiles</h2>
+    <pre><code>getHtmlMsg : function (msg) {
+    var smiles = [":)", ":'(", ":P", ";)", ":*", ":D", ":@", "¬¬", "8|"],
+    codes  = ["85", "358", "348", "344", "363", "86", "361", "353", "352"];
+
+    var result = msg;
+    for(var i = 0; i < smiles.length; i++){
+        var smile = smiles[i], code = codes[i];
+        result = result.replace(smile, '<i class="icon-' + code + '"></i>');
+    }
+    return result;
+},
+
+appendMsg : function (msg) {
+    var context = msg.toJSON();
+    context.htmlMsg = this.getHtmlMsg(context.msg);
+...</code></pre>
+</section>
+
+<section>
+    <h2>MessagesView / smiles / template</h2>
+    <p>En handlebars las triple llaves <code>{{{ }}}</code> no escapan las variables.</p>
+    <pre><code>&lt;p&gt;{{{ htmlMsg }}}&lt;/p&gt;</code></pre>
+</section>
+
+<section>
+    <h2>InputView</h2>
+    <pre><code>App.InputView = Backbone.View.extend({
+
+    initialize : function (options) {
+        this.$input = this.$el.find('input');
+    },
+
+    events : {
+        "keypress" : "keypress"
+    },
+
+    keypress : function (e) {
+        if (e.which == 13) { // enter
+            var val = this.$input.val();
+            this.$input.val('');
+
+            var msg = new App.Message({msg : val});
+            this.trigger("newMessage", msg);
+        }
+    }
+});</code></pre>
+</section>
+
+
+
+<section>
+    <h2>InputView</h2>
+    <p>Conecta los eventos</p>
+
+    <pre><code>App.inputView.on("newMessage", function (msg) {
+    App.messages.add(msg);
+});</code></pre>
+</section>
+
+<section>
+    <h2>InputView / validation</h2>
+    <pre><code>App.Message = Backbone.Model.extend({
+    validate : function (attributes) {
+        if(_.isUndefined(attributes.msg) ||
+           attributes.msg.length === 0)
+        {
+            return "el mensaje debe tener contenido";
+        }
+    }
+});</code></pre>
+</section>
+
+<section>
+    <h2>InputView / validation</h2>
+    <pre><code>    keypress : function (e) {
+    if (e.which == 13) { // enter
+        var val = this.$input.val();
+
+        var msg = new App.Message({msg : val});
+        if(msg.isValid()){
+            this.$input.val('');
+            this.trigger("newMessage", msg);
+        }
+    }
+}</code></pre>
+</section>
+
+<section>
+    <h2>Socket.io server</h2>
+</section>
+
+<section>
+    <h2>Socket.io sync</h2>
+
+    <pre><code>var socket = io.connect('http://chat-tlp2k12.herokuapp.com');
+socket.on('connect', function () {
+    var username = prompt("What's your name?");
+    App.config.set('username', username);
+    socket.emit('adduser', username);
+});
+socket.on("initchat", function (response) {
+    App.messages.reset(response);
+});
+socket.on('updatechat', function (message) {
+    App.messages.add(message);
+});
+socket.on('updateusers', function (data) {
+    var users = _.map(_.keys(data), function (name) {
+        return {name : name};
+    });
+    App.users.reset(users);
+});
+App.inputView.on("newMessage", function (message) {
+    socket.emit('sendchat', message.get('msg'));
+});</code></pre>
+</section>
+
+<section>
+    <h2>Recursos</h2>
+    <ul>
+        <li><a href="http://ricostacruz.com/backbone-patterns/">Backbone Patterns</a></li>
+        <li><a href="http://backboneboilerplate.com/">Backbone Boilerplate</a></li>
+    </ul>
+</section>
+
+</div>
+
+<!-- The navigational controls UI -->
+<aside class="controls">
+    <a class="left" href="#">&#x25C4;</a>
+    <a class="right" href="#">&#x25BA;</a>
+    <a class="up" href="#">&#x25B2;</a>
+    <a class="down" href="#">&#x25BC;</a>
+</aside>
+
+<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+<div class="progress"><span></span></div></div>
+
+<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+<script src="lib/highlight.js"></script>
+<script src="lib/classList.js"></script>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // Parse the query string into a key/value object
+    var query = {};
+    location.search.replace(/[A-Z0-9]+?=(\w*)/gi, function (a) {
+        query[ a.split('=').shift() ] = a.split('=').pop();
+    });
+    Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls : true,
+
+        // Display a presentation progress bar
+        progress : true,
+
+        // If true; each slide will be pushed to the browser history
+        history : true,
+
+        // Loops the presentation, defaults to false
+        loop : false,
+
+        // Flags if mouse wheel navigation should be enabled
+        mouseWheel : false,
+
+        // Apply a 3D roll to links on hover
+        rollingLinks : false,
+
+        // UI style
+        theme : query.theme || 'pink', // default/neon
+
+        // Transition style
+        transition : query.transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+</body>
+</html>

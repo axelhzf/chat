@@ -1,0 +1,121 @@
+.reveal .slides img {
+    margin: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+body {
+    background: #1C1D25;
+}
+
+.reveal.pink a,
+.reveal.pink a:hover,
+.reveal.pink .controls a.enabled {
+    color: #F22562;
+}
+
+.reveal.pink .progress span,
+.reveal.pink .roll span:after {
+    background: #F22562;
+}
+
+.reveal.pink a.image:hover img {
+    border-color: #F22562;
+}
+
+.reveal.pink code {
+    font-family: Menlo, monospace;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 1em;
+}
+
+.reveal.pink h1,
+.reveal.pink h2,
+.reveal.pink h3,
+.reveal.pink h4 {
+    text-transform: none;
+}
+
+.two-columns {
+    font-size: 0.5em;
+    line-height: 1.5em;
+}
+
+.two-columns li {
+    display: inline-block;
+    width: 30%;
+}
+
+.twitter {
+    height: 100px;
+    vertical-align: middle;
+}
+
+.centered {
+    margin-top: 150px;
+}
+
+.whoami h1 {
+    text-shadow: none;
+}
+
+.whoami a:link {
+    color: #fff;
+}
+
+.pink .whoami a:hover {
+    color: #F22562;
+    background: none;
+}
+
+.pink a:hover img {
+    background: none;
+    box-shadow: none;
+}
+
+.bubble {
+    background-color: #F22562;
+    color : #1C1D25;
+    margin-right: 20px;
+    display: inline-block;
+
+    height: 250px;
+    width: 250px;
+    border-radius: 250px;
+    line-height: 250px;
+}
+
+.pink .bubble a:link, .pink .bubble a:visited, .pink .bubble a:active {
+    color : #1C1D25;
+}
+
+.bubble-big {
+    height: 300px;
+    width: 300px;
+    border-radius: 300px;
+    line-height: 300px;
+}
+
+.bubble-min {
+    font-size: 18px;
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    line-height: 100px;
+}
+
+.whatido {
+    width: 640px;
+    margin: 150px auto 0 auto;
+}
+
+table {
+    margin: 0 auto;
+}
+
+td {
+    border: 1px solid #fff;
+    width: 400px;
+}
