@@ -119,3 +119,32 @@ td {
     border: 1px solid #fff;
     width: 400px;
 }
+
+.reveal .slides img.backbone-logo {
+    background-color: #EEE;
+    padding: 20px;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+.reveal.pink .btn {
+    display: inline-block;
+}
+
+.reveal.pink .btn a {
+    font-family: 'League Gothic', sans-serif;
+    display: inline-block;
+    margin-top: 200px;
+    padding: 10px;
+    width: 300px;
+    background-color:  #F22562;
+    color: #fff;
+}
+
+.reveal.pink .btn a:hover {
+    background-color: #d3255c;
+}
+
+.reveal.pink .btn .h2 {
+    font-size: 10px;
+}
