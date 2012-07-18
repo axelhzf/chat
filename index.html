@@ -192,7 +192,7 @@
 
     <h3>"Yo con jQuery tengo suficiente"</h3>
 
-    <p>Backbone.js no es un sustituto de jQuery, todo lo contrario, depende de jQuery para manipular el
+    <p>Backbone.js no es un sustituto de jQuery. Depende de jQuery para manipular el
         DOM.</p>
 
 
@@ -339,7 +339,7 @@ artist.toJSON(); // { firstName: "Wassily", lastName: "Kandinsky", birthday: "De
     <h2>Model / Sync </h2>
 
     <p>
-        Intermanente los métodos, "save", "fetch" y "destroy" llaman al método <strong><a
+        Internamente los métodos "save", "fetch" y "destroy" llaman al método <strong><a
             href="http://backbonejs.org/#Sync">Backbone.sync</a></strong> pasándole
         los parámetros adecuados.
     <p>
@@ -506,7 +506,7 @@ documentView.render();
 </section>
 
 <section>
-    <h2>View / Tempaltes / Underscore</h2>
+    <h2>View / Templates / Underscore</h2>
     <pre><code>
     var DocumentView = Backbone.View.extend({
         template : _.template("&lt;strong&gt;Title&lt;strong&gt; : <%= title %>");
@@ -519,10 +519,10 @@ documentView.render();
 </section>
 
 <section>
-    <h2>View / Tempaltes / Underscore</h2>
+    <h2>View / Templates / Underscore</h2>
 
     <p>El principal inconveniente de las plantillas
-       de undescore es el código inline para hacer cosas sencilla.</p>
+       de undescore es el código inline para hacer cosas sencillas.</p>
     <p>Ej: Bucle</p>
 
     <pre><code>
@@ -604,9 +604,6 @@ var DocumentRow = Backbone.View.extend({
 <section>
     <h1>Conectar eventos</h1>
 
-    <p>La magia de backbone viene cuando empezamos a conectar eventos.
-    </p>
-
     <pre><code>
         model.on("change", view.render);
         view.on("addUser", function (user) {
@@ -655,7 +652,7 @@ var DocumentRow = Backbone.View.extend({
 
 <section>
     <h2>UsersView</h2>
-    <p>Está vista renderiza la plantilla con la lista de usuarios conectados</p>
+    <p>Esta vista renderiza la plantilla con la lista de usuarios conectados</p>
     <pre><code>App.UsersView = Backbone.View.extend({
 
     template : Handlebars.compile($('#usersTmpl').html()),
@@ -679,7 +676,7 @@ App.usersView.render();</code></pre>
 
 <section>
     <h2>UsersView</h2>
-    <p>Conecta los eventos para que al modificar la lista de usuario, se renderice la vista automáticamente.</p>
+    <p>Conecta los eventos para que al modificar la lista de usuarios, se renderice la vista automáticamente</p>
 
     <pre><code>
 App.users.on('add reset', function () {
@@ -689,9 +686,8 @@ App.users.reset([{name : 'user1'}, {name : 'user2'}]);
     </code></pre>
 
     <p>
-        <small>Deberíamos también conectar los eventos de eliminar, pero en nuestro caso el servidor va a devolver
-            siempre
-            la lista completa de usuario, así que el único evento que se va a lanzar es el reset.
+        <small>También se debería conectar el evento "remove", pero en nuestro caso el servidor devuelve
+            la lista completa de usuarios. El único evento que se lanza es el reset
         </small></p>
 </section>
 
@@ -710,8 +706,8 @@ App.users.reset([{name : 'user1'}, {name : 'user2'}]);
         this.$el.append(this.msgTemplate(context));
     }
 });</code></pre>
-    <p><small>En este caso en vez de renderizar la lista completa, renderizmos cada uno de los elementos porque el servidor
-        nos va a devolver los menajes nuevos individualmente.</small></p>
+    <p><small>En este caso en vez de renderizar la lista completa, se renderiza cada uno de los elementos porque el servidor
+        devuelve mensajes individualmente</small></p>
 </section>
 
 <section>
@@ -741,12 +737,12 @@ App.messages.reset([msg1]);
 App.messages.add(msg2);</code></pre>
 
 <p><small>En este caso tenemos dos eventos distintos porque se llamará a "reset" cuando se conecte al servidor y a "add"
-cuando llegue un mensaje nuevo.</small></p>
+cuando llegue un mensaje nuevo</small></p>
 </section>
 
 <section>
     <h2>MessagesView / scrollBottom</h2>
-    <p>Cuando un mensaje nuevo llegue deberíamos verlo en pantalla.</p>
+    <p>Cuando llegue un mensaje se debería ver</p>
 
     <pre><code>scrollBottom : function () {
     this.$el.scrollTop(this.$el.prop('scrollHeight'));
@@ -797,7 +793,7 @@ appendMsg : function (msg) {
 
 <section>
     <h2>MessagesView / smiles / template</h2>
-    <p>En handlebars las triple llaves <code>{{{ }}}</code> no escapan las variables.</p>
+    <p>En Handlebars la triple llave <code>{{{ }}}</code> no escapa las variables.</p>
     <pre><code>&lt;p&gt;{{{ htmlMsg }}}&lt;/p&gt;</code></pre>
 </section>
 
