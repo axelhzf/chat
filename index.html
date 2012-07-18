@@ -56,7 +56,7 @@
     <h2>¿Dónde trabajo?</h2>
     <div class="centered">
         <div>
-            <a href="http://www.arte-consultores.com" target="_blank"><img src="images/logo_arte_consultores.png" alt="arte-consultores"></a>
+            <a href="http://www.arte-consultores.com" target="_blank"><img src="images/logo_arte_consultores.jpeg" alt="arte-consultores"></a>
         </div>
         <div>
             <a href="http://www.stat4you.com/" target="_blank"><img src="images/stat4you.png" alt="stat4you"></a>
@@ -778,13 +778,13 @@ appendMsg : function (msg) {
 <section>
     <h2>MessagesView / smiles</h2>
     <pre><code>getHtmlMsg : function (msg) {
-    var smiles = [":)", ":'(", ":P", ";)", ":*", ":D", ":@", "¬¬", "8|"],
-    codes  = ["85", "358", "348", "344", "363", "86", "361", "353", "352"];
+    var smiles = [&quot;:)&quot;, &quot;:'(&quot;, &quot;:P&quot;, &quot;;)&quot;, &quot;:*&quot;, &quot;:D&quot;, &quot;:@&quot;, &quot;&not;&not;&quot;, &quot;8|&quot;],
+    codes  = [&quot;85&quot;, &quot;358&quot;, &quot;348&quot;, &quot;344&quot;, &quot;363&quot;, &quot;86&quot;, &quot;361&quot;, &quot;353&quot;, &quot;352&quot;];
 
     var result = msg;
-    for(var i = 0; i < smiles.length; i++){
+    for(var i = 0; i &lt; smiles.length; i++){
         var smile = smiles[i], code = codes[i];
-        result = result.replace(smile, '<i class="icon-' + code + '"></i>');
+        result = result.replace(smile, '&lt;i class=&quot;icon-' + code + '&quot;&gt;&lt;/i&gt;');
     }
     return result;
 },
@@ -851,7 +851,7 @@ appendMsg : function (msg) {
 
 <section>
     <h2>InputView / validation</h2>
-    <pre><code>    keypress : function (e) {
+    <pre><code>keypress : function (e) {
     if (e.which == 13) { // enter
         var val = this.$input.val();
 
