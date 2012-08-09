@@ -1,0 +1,213 @@
+@import "reset.less";
+@import "mixins.less";
+@import "sprite.less";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    //height: 100%;
+    //overflow: hidden;
+}
+
+body {
+    font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+}
+
+.users {
+    background-color: #eee;
+}
+
+.user {
+    font-weight: bold;
+    text-shadow: 1px 0 0 #fff;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 5px 5px 5px 10px;
+    border-bottom: 1px solid #D3CDC9;
+    .box-shadow(0 1px 0 #fff);
+}
+
+.wrapper {
+    height: 400px;
+}
+
+.users {
+    //display: table-cell;
+    width: 200px;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #989A9E;
+}
+
+.users-inner {
+    vertical-align: top;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.center {
+    //display: table-cell;
+    vertical-align: top;
+    position: relative;
+
+    background-image: url("../images/bg.png");
+    .box-shadow(inset 2px 0 9px -4px rgba(0, 0, 0, 0.5));
+    padding-bottom: @inputHeight;
+    float: left;
+    height: 100%;
+    width: 800px;
+}
+
+@inputHeight: 40px;
+@centerMargin: 10px;
+
+.conversation {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: @inputHeight;
+    line-height: @inputHeight;
+
+    border-top: 1px solid #b7bcc8;
+
+    @shadow : 1px 0 10px rgba(183, 188, 201, 0.9),
+inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    .box-shadow(@shadow);
+}
+
+.input-inner {
+    margin-left: @centerMargin;
+    margin-right: @centerMargin;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type=text] {
+    border: 1px solid #a9acb3;
+    border-radius: 14px;
+    padding: 3px 10px;
+    width: 100%;
+    .box-sizing(border-box);
+
+    @shadow : 0 1px rgba(255, 255, 255, 0.3),
+inset 0 1px 4px rgba(0, 0, 0, 0.15);
+    .box-shadow(@shadow);
+}
+
+@bubble-border : #5777a5;
+@bubble-bg-1 : rgba(132, 179, 243, 1);
+@bubble-bg-2 : rgba(134, 179, 238, 1);
+@bubble-bg-3 : rgba(177, 204, 238, 1);
+
+@violet-bubble-border : #9074a6;
+@violet-bubble-bg-1 : rgba(225, 193, 438, 1);
+@violet-bubble-bg-2 : rgba(212, 175, 239, 1);
+@violet-bubble-bg-3 : rgba(222, 202, 238, 1);
+
+
+.bubble (@border, @bg1, @bg2, @bg3) {
+    //background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @bg1), color-stop(0.28, @bg2), color-stop(1, @bg3));
+    #gradient > .vertical-three-colors(@bg1, @bg2, 28%,  @bg3);
+
+    border-color: @border;
+
+    .chat-bubble-arrow {
+        border-color: transparent @bg3 transparent transparent;
+    }
+
+    .chat-bubble-arrow-border {
+        border-color: transparent @border transparent transparent;
+    }
+}
+
+.chat-bubble.me {
+    float: right;
+    text-align: right;
+
+    .bubble(@bubble-border, @bubble-bg-1, @bubble-bg-2, @bubble-bg-3);
+
+    .chat-bubble-arrow {
+        bottom: -1px;
+        right: -3px;
+        .rotate(110deg);
+    }
+
+    .chat-bubble-arrow-border {
+        bottom: -3px;
+        right: -5px;
+        .rotate(110deg);
+    }
+}
+
+.chat-bubble.other {
+    .bubble(@violet-bubble-border, @violet-bubble-bg-1, @violet-bubble-bg-2, @violet-bubble-bg-3);
+
+    .chat-bubble-arrow {
+        bottom: -1px;
+        left: -3px;
+        .rotate(70deg);
+    }
+
+    .chat-bubble-arrow-border {
+        bottom: -3px;
+        left: -5px;
+        .rotate(70deg);
+    }
+}
+
+.chat-bubble {
+    float: left;
+    clear: both;
+    position: relative;
+    margin: 6px @centerMargin;
+    padding: 5px 15px;
+
+    border: 1px solid;
+    .border-radius(10px);
+    .box-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
+    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.chat-bubble p {
+    margin: 0;
+}
+
+.chat-bubble-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 4px;
+    width: 100%;
+    .box-sizing(border-box);
+}
+
+.chat-bubble-glare-inner {
+    width: 100%;
+    height: 15px;
+    .border-radius(10px);
+    #gradient > .vertical(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+}
+
+.chat-bubble-arrow {
+    border-style: solid;
+    border-width: 6px;
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+
+.chat-bubble-arrow-border {
+    border-style: solid;
+    border-width: 6px;
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+

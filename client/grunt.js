@@ -5,6 +5,10 @@ module.exports = function (grunt) {
             all : {
                 src : "assets/less/main.less",
                 dest : "assets/less/main.css"
+            },
+            firefox : {
+                src : "assets/less/main-firefox.less",
+                dest : "assets/less/main-firefox.css"
             }
         },
         watch : {
