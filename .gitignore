@@ -14,6 +14,8 @@ server/results
 **/node_modules
 server/npm-debug.log
 
+client/src-coffee/js
+
 .DS_STORE
 *.iml
 .idea
